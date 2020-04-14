@@ -6,8 +6,8 @@ afterEach(() => {
 	cy.get(menu.logout).click();
   })
 
-describe('Login page', function() {
-	it('logs you to php admin travels page with valid credentials', () => {
+describe('C1 Login page', function() {
+	it('C1 logs you to php admin travels page with valid credentials', () => {
 		cy.visit(host);
 		cy.login(username, password);
 		cy.compareSnapshot('login', 0.0);

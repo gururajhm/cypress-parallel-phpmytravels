@@ -1,23 +1,25 @@
 {
-	"watchForFileChanges": true,
-	"chromeWebSecurity ": false,
-	"viewportWidth": 1280,
-	"viewportHeight": 1000,
-	"reporter": "cypress-testrail-accumulative-reporter",
-	"reporterOptions": {
-		"domain": "https://lpg.testrail.io",
-		"username": "gururaj.marigowda@leisurepassgroup.com",
-		"password": "Aicsmip_123",
-		"projectId": 1,
-		"suiteId": 1,
-		"runId" :1
-	},
-	"env": {
-		"username": "admin@phptravels.com",
-		"password": "demoadmin",
-		"host":"https://www.phptravels.net/admin",
-		"failSilently": false
-	  },
-	  "screenshotsFolder": "cypress/snapshots/actual",
-  		"trashAssetsBeforeRuns": true
+  "watchForFileChanges": true,
+  "chromeWebSecurity ": false,
+  "viewportWidth": 1280,
+  "viewportHeight": 1000,
+  "reporter": "cypress-testrail-accumulative-reporter",
+  "reporterOptions": {
+    "domain": "",
+    "username": "",
+    "password": "",
+    "projectId": 1,
+    "suiteId": 1,
+    "runId": 1
+  },
+  
+  "env": {
+    "username": "admin@phptravels.com",
+    "password": "demoadmin",
+    "host": "https://www.phptravels.net/admin",
+    "failSilently": false
+  },
+  "screenshotsFolder": "cypress/snapshots/actual",
+  "trashAssetsBeforeRuns": true,
+  "projectId": "dnvpsb"
 }

@@ -23,6 +23,7 @@
     "fs-extra": "^8.1.0",
     "mkdirp": "^1.0.3",
     "request": "^2.88.0",
+    "write-yaml": "^1.0.0",
     "yargs": "^14.2.2"
   },
   "dependencies": {},

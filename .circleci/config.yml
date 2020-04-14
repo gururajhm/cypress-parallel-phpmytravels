@@ -1,5 +1,4 @@
-version: 2.1
-
+version: 2
 jobs:
   build:
     working_directory: ~/tmp
@@ -27,93 +26,26 @@ jobs:
           paths:
             - .cache
             - tmp
-  test1:
+  combine_reports:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
         environment:
           TERM: xterm
     steps:
+      - checkout
       - attach_workspace:
           at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 1
-          command: $(npm bin)/cypress run --spec cypress/integration/01_login.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-  test2:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
       - attach_workspace:
-          at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 2
-          command: $(npm bin)/cypress run --spec cypress/integration/02_cmsPages.js
+          at: /tmp/mochawesome-report
+      - run: ls /tmp/mochawesome-report
+      - run: node ./lib/combine.js
       - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-  test3:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 3
-          command: $(npm bin)/cypress run --spec cypress/integration/03_GeneralSetting.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-  test4:
-    working_directory: ~/tmp
-    docker:
-      - image: 'cypress/base:10'
-        environment:
-          TERM: xterm
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: ls -la cypress
-      - run: ls -la cypress/integration
-      - run:
-          name: Running cypress tests 4
-          command: $(npm bin)/cypress run --spec cypress/integration/04_Accounts.js
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-
+          path: mochareports
 workflows:
-  version: 2.1
+  version: 2
   build_and_test:
     jobs:
       - build
-      - test1:
-          requires:
-            - build
-      - test2:
-          requires:
-            - build
-      - test3:
-          requires:
-            - build
-      - test4:
-          requires:
-            - build
+      - combine_reports:
+          requires: []
