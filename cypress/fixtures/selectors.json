@@ -1,8 +1,10 @@
 {
 	"common": {
 		"cmsLink": "[href='#CMS']",
-		"cmsPagesLink": "#CMS > :nth-child(1) > a"
-	},
+		"cmsPagesLink": "#CMS > :nth-child(1) > a",
+		"GeneralSettingLink":"[href='#menu-ui']",
+		"AccountsLink":"[href='#ACCOUNTS']"
+		},
 	"menu": {
 		"logout": "#nav > .nav > #logout > a > strong"
 	},
