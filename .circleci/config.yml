@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/tmp
+    working_directory: /tmp
     docker:
       - image: 'cypress/base:10'
         environment:
@@ -22,12 +22,12 @@ jobs:
             - ~/.npm
             - ~/.cache
       - persist_to_workspace:
-          root: ~/
+          root: /
           paths:
             - .cache
             - tmp
   combine_reports:
-    working_directory: ~/tmp
+    working_directory: /tmp
     docker:
       - image: 'cypress/base:10'
         environment:
@@ -35,7 +35,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: /
       - attach_workspace:
           at: /tmp/mochawesome-report
       - run: ls /tmp/mochawesome-report
@@ -129,6 +129,35 @@ jobs:
           paths:
             - test3.json
             - test3.html
+  test4:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 4
+          command: >-
+            if $(npm bin)/cypress run --spec
+            cypress/integration/04_Accounts.spec.js --reporter mochawesome
+            --reporter-options "reportFilename=test4"; then echo 'pass'; else
+            echo 'fail'; fi
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+      - store_artifacts:
+          path: mochawesome-report
+      - persist_to_workspace:
+          root: mochawesome-report
+          paths:
+            - test4.json
+            - test4.html
 workflows:
   version: 2.1
   build_and_test:
@@ -143,8 +172,12 @@ workflows:
       - test3:
           requires:
             - build
+      - test4:
+          requires:
+            - build
       - combine_reports:
           requires:
             - test1
             - test2
             - test3
+            - test4

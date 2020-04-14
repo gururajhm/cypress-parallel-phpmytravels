@@ -2,7 +2,7 @@
   "version": 2.1,
   "jobs": {
     "build": {
-      "working_directory": "~/tmp",
+      "working_directory": "/tmp",
       "docker": [
         {
           "image": "cypress/base:10",
@@ -42,7 +42,7 @@
         },
         {
           "persist_to_workspace": {
-            "root": "~/",
+            "root": "/",
             "paths": [
               ".cache",
               "tmp"
@@ -52,7 +52,7 @@
       ]
     },
     "combine_reports": {
-      "working_directory": "~/tmp",
+      "working_directory": "/tmp",
       "docker": [
         {
           "image": "cypress/base:10",
@@ -65,7 +65,7 @@
         "checkout",
         {
           "attach_workspace": {
-            "at": "~/"
+            "at": "/"
           }
         },
         {
