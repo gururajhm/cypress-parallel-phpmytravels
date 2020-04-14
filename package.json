@@ -1,15 +1,38 @@
 {
   "name": "cypress-parallel-phptravels",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tests": "testcafe chrome tests/specs",
+    "e2e": "cypress run",
+    "open:e2e": "cypress open",
+    "e2e:env": "cp cypress.env cypress.env.json",
+    "cypress:run:chrome": "cypress run --browser chrome",
+    "cypress:run:firefox": "cypress run --browser firefox"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^4.4.0"
-  }
+    "@cypress/browserify-preprocessor": "^2.1.4",
+    "archiver": "^3.1.1",
+    "browserstack-cypress-cli": "1.1.0",
+    "cypress": "^4.4.0",
+    "cypress-testrail-accumulative-reporter": "^1.1.4",
+    "cypress-visual-regression": "^1.2.0",
+    "fs-extra": "^8.1.0",
+    "mkdirp": "^1.0.3",
+    "request": "^2.88.0",
+    "yargs": "^14.2.2"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gururajhm/cypress-parallel-phpmytravels.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gururajhm/cypress-parallel-phpmytravels/issues"
+  },
+  "homepage": "https://github.com/gururajhm/cypress-parallel-phpmytravels#readme",
+  "description": ""
 }
