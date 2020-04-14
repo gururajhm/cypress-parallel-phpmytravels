@@ -1,7 +1,7 @@
-version: 2.1
+version: 2
 jobs:
   build:
-    working_directory: /tmp
+    working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
         environment:
@@ -22,12 +22,12 @@ jobs:
             - ~/.npm
             - ~/.cache
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - .cache
             - tmp
   combine_reports:
-    working_directory: /tmp
+    working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
         environment:
@@ -35,7 +35,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /
+          at: ~/
       - attach_workspace:
           at: /tmp/mochawesome-report
       - run: ls /tmp/mochawesome-report
@@ -159,7 +159,7 @@ jobs:
             - test4.json
             - test4.html
 workflows:
-  version: 2.1
+  version: 2
   build_and_test:
     jobs:
       - build
