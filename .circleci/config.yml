@@ -27,7 +27,7 @@ jobs:
           paths:
             - .cache
             - tmp
-  test1:
+  test1Login:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -45,7 +45,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-  test2:
+  test2CMSPage:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -63,7 +63,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-  test3:
+  test3GeneralSettings:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -81,7 +81,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-  test4:
+  test4Accounts:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
