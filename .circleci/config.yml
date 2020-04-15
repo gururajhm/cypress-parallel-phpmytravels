@@ -27,7 +27,7 @@ jobs:
           paths:
             - .cache
             - tmp
-  test:
+  test1:
     working_directory: ~/tmp
     docker:
       - image: 'cypress/base:10'
@@ -39,18 +39,81 @@ jobs:
       - run: ls -la cypress
       - run: ls -la cypress/integration
       - run:
-          name: Running cypress tests
-          command: $(npm bin)/cypress run
+          name: Running cypress tests 1
+          command: $(npm bin)/cypress run --spec cypress/integration/01_login.spec.js
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test2:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 2
+          command: $(npm bin)/cypress run --spec cypress/integration/02_cmsPages.spec.js
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test3:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 3
+          command: $(npm bin)/cypress run --spec cypress/integration/03_GeneralSetting.spec.js
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+  test4:
+    working_directory: ~/tmp
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: ls -la cypress
+      - run: ls -la cypress/integration
+      - run:
+          name: Running cypress tests 4
+          command: $(npm bin)/cypress run --spec cypress/integration/04_Accounts.spec.js
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
 
 workflows:
-  version: 2.1
+  version: 2
   build_and_test:
     jobs:
       - build
-      - test:
+      - test1Login:
+          requires:
+            - build
+      - test2CMSPage:
+          requires:
+            - build
+      - test3GeneralSettings:
+          requires:
+            - build
+      - test4Accounts:
           requires:
             - build
