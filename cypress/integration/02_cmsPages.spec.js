@@ -18,8 +18,6 @@ describe('CMS page Create new records', function() {
             cy.get(common.cmsLink).click();
             cy.get(common.cmsPagesLink).click();
             cy.get(cmsPages.addBtn).click();
-            cy.compareSnapshot('cmspage', 0.0);
-		      cy.compareSnapshot('cmspage', 0.1);
             cy.get(cmsPages.title).type(pagesData.pages.testCases.testdataone.title);
             cy.get(cmsPages.permlink).type(pagesData.pages.testCases.testdataone.permlink);
     
