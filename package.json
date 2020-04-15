@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "tests": "testcafe chrome tests/specs",
     "e2e": "cypress run",
     "open:e2e": "cypress open",
     "e2e:env": "cp cypress.env cypress.env.json",

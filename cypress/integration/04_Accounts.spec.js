@@ -1,7 +1,7 @@
-// TestCase 2 to create CMS Pages 
+// TestCase 4 to create / access Account page...
 import { username, password, host} from '../fixtures/credentials';
 import { login, common, cmsPages, menu } from '../fixtures/selectors.json';
-import pagesData from '../fixtures/data.js';
+
 beforeEach(() => {
     cy.visit(host);
 
@@ -12,13 +12,9 @@ beforeEach(() => {
     cy.get(menu.logout).click();
     })
     
-describe('Accounts Test Cases', function() {
-	it('Access Accounts Screen and update', () => {
+describe('Test Case 4 - Accounts Test Cases', function() {
+	it('Test Case 4 - Access Accounts Screen and update', () => {
           
-            cy.get(common.AccountsLink).click();
-            
-     });
-     
-  
-	 
+            cy.get(common.AccountsLink).click();    
+     });	 
 });
