@@ -41,7 +41,7 @@ jobs:
       - run: ls /tmp/mochawesome-report
       - run: node ./lib/combine.js
       - store_artifacts:
-          path: mochawesome-report
+          path: mochareports
   test1:
     working_directory: ~/tmp
     docker:
